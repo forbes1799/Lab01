@@ -4,7 +4,9 @@
 # This is the default setting.
 #SBATCH -D ./
 
-# Export the current environment to the compute node (all modules that are loaded)
+# Export the current environment to the compute node (modules that you have loaded in...
+# ...the login node will be loaded onto the compute node)
+
 # This is the default setting.
 #SBATCH --export=ALL
 
@@ -13,10 +15,12 @@
 #SBATCH --exclusive
 #SBATCH -t 1
 
+# No special modules need to be loaded for this job
 
 echo '---Running Program---'
 
-gcc quad.c func1.c -lm
+gcc -std=c99 quad.c func1.c -lm
+
 time ./a.out
 
 echo '---Ending Program----'
